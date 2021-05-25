@@ -98,4 +98,16 @@ router.get('/list', middle.checkUser, (req, res) => {
 	})
 })
 
+// 获取结余信息
+router.get('/summary', middle.checkUser, (req, res) => {
+	let { openid, year } = req.query
+	db.select('*').from('record').where('openid', openid).where('time', year - 1 + '-12-31', 'gt').queryList().then(data => {
+		console.log(data, openid)
+		res.send({code: 200, data})
+	}).catch(err => {
+		console.log(err)
+		res.send({code: -1, msg: '系统繁忙'})
+	})
+})
+
 module.exports = router;

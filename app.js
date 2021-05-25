@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var recordRouter = require('./routes/record');
 var weixinRouter = require('./routes/weixin');
+var tobuyRouter = require('./routes/tobuy');
 
 var app = express();
 app.disable('etag');
@@ -34,6 +35,7 @@ app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/record', recordRouter);
 app.use('/weixin', weixinRouter);
+app.use('/tobuy', tobuyRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
